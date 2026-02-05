@@ -24,43 +24,29 @@
 //! a library that extracts type information from Rust code using rust-analyzer.
 //!
 //! ```text
-//!   ┌─────────────────────────────────────────────┐
-//!   │  /// ```rust                                │
-//!   │  /// let x = vec![1, 2, 3];                 │
-//!   │  /// let sum: i32 = x.iter().sum();         │
-//!   │  /// ```                                    │
-//!   └──────────────────┬──────────────────────────┘
-//!                      │
-//!                      ▼
-//!   ┌──────────────────────────────────────────────┐
-//!   │  pulldown-cmark  (markdown.rs)               │
-//!   │  Parses doc comments, yields code blocks     │
-//!   └──────────────────┬───────────────────────────┘
-//!                      │
-//!                      ▼
-//!   ┌──────────────────────────────────────────────┐
-//!   │  twoslash.rs                                 │
-//!   │  Wraps code in fn main(), extracts use       │
-//!   │  statements, calls twoslash-rust             │
-//!   │                                              │
-//!   │    twoslash-rust ──► rust-analyzer           │
-//!   │    Scaffolds temp Cargo project, runs        │
-//!   │    ra_ap_ide, returns StaticQuickInfo[]      │
-//!   └──────────────────┬───────────────────────────┘
-//!                      │
-//!                      ▼
-//!   ┌──────────────────────────────────────────────┐
-//!   │  highlight.rs                                │
-//!   │  Merges annotations into DecorationInfo,     │
-//!   │  fuzzy-matches token ranges, emits           │
-//!   │  <span data-type="let x: Vec<i32>">          │
-//!   └──────────────────┬───────────────────────────┘
-//!                      │
-//!                      ▼
-//!   ┌──────────────────────────────────────────────┐
-//!   │  rustdoc.css + main.js                       │
-//!   │  CSS hover popovers with JS positioning      │
-//!   └──────────────────────────────────────────────┘
+//! Doc comment ````rust code blocks
+//!         │
+//!         ▼
+//!    pulldown-cmark (markdown.rs)
+//!         │
+//!         ▼
+//!    CodeBlocks iterator extracts code text
+//!         │
+//!         ▼
+//!    twoslash.rs ──► twoslash-rust ──► rust-analyzer
+//!         │              │                  │
+//!         │              │    scaffolds a temp Cargo project,
+//!         │              │    runs rust-analyzer, returns
+//!         │              │    type info per identifier
+//!         │              ◄──────────────────┘
+//!         ▼
+//!    highlight.rs merges annotations into DecorationInfo
+//!         │
+//!         ▼
+//!    push_token() emits <span data-type="..."> attributes
+//!         │
+//!         ▼
+//!    rustdoc.css renders hover popovers via CSS + JS
 //! ```
 //!
 //! ### Source

@@ -20,7 +20,7 @@
 //!
 //! The type annotations you see on hover are produced by a
 //! [modified version of rustdoc](https://github.com/tmm/rustdoc-twoslash)
-//! that integrates [`twoslash-rust`](https://github.com/wevm/vocs/tree/main/twoslash-rust),
+//! that integrates [`twoslash-rust`](https://github.com/wevm/vocs/tree/next/twoslash-rust),
 //! a library that extracts type information from Rust code using rust-analyzer.
 //!
 //! ```text
@@ -66,7 +66,7 @@
 //! ### Source
 //!
 //! - **Rustdoc fork**: [`tmm/rustdoc-twoslash`](https://github.com/tmm/rustdoc-twoslash) — the modified `src/librustdoc/` files and a patch
-//! - **twoslash-rust**: [`wevm/vocs/twoslash-rust`](https://github.com/wevm/vocs/tree/main/twoslash-rust) — rust-analyzer integration library
+//! - **twoslash-rust**: [`wevm/vocs/twoslash-rust`](https://github.com/wevm/vocs/tree/next/twoslash-rust) — rust-analyzer integration library
 //! - **This demo**: [`tmm/twoslash-demo`](https://github.com/tmm/twoslash-demo)
 //!
 //! ### Build

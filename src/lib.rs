@@ -25,10 +25,10 @@
 //!
 //! ```text
 //!   ┌─────────────────────────────────────────────┐
-//!   │  /// ```rust                                 │
-//!   │  /// let x = vec![1, 2, 3];                  │
-//!   │  /// let sum: i32 = x.iter().sum();          │
-//!   │  /// ```                                     │
+//!   │  /// ```rust                                │
+//!   │  /// let x = vec![1, 2, 3];                 │
+//!   │  /// let sum: i32 = x.iter().sum();         │
+//!   │  /// ```                                    │
 //!   └──────────────────┬──────────────────────────┘
 //!                      │
 //!                      ▼
@@ -43,9 +43,9 @@
 //!   │  Wraps code in fn main(), extracts use       │
 //!   │  statements, calls twoslash-rust             │
 //!   │                                              │
-//!   │    twoslash-rust ──► rust-analyzer            │
+//!   │    twoslash-rust ──► rust-analyzer           │
 //!   │    Scaffolds temp Cargo project, runs        │
-//!   │    ra_ap_ide, returns StaticQuickInfo[]       │
+//!   │    ra_ap_ide, returns StaticQuickInfo[]      │
 //!   └──────────────────┬───────────────────────────┘
 //!                      │
 //!                      ▼

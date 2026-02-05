@@ -2,7 +2,7 @@
 
 Demo crate for [rustdoc-twoslash](https://github.com/tmm/rustdoc-twoslash) — rustdoc with IDE-style type hover annotations on code blocks.
 
-**Live demo**: https://doc-wevm.vercel.app
+**Live demo**: https://twoslash-rustdoc.vercel.app
 
 ## Build & Deploy
 

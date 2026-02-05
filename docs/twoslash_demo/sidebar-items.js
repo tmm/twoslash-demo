@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["closures_demo","error_handling_demo","hex_collections_demo","hex_demo","iterators_demo","pattern_matching_demo","process_items","trait_objects_demo"],"struct":["Config","Store"]};

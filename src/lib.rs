@@ -15,6 +15,68 @@
 //! let total: i32 = scores.values().sum();
 //! let avg = total as f64 / scores.len() as f64;
 //! ```
+//!
+//! ## How This Works
+//!
+//! The type annotations you see on hover are produced by a
+//! [modified version of rustdoc](https://github.com/tmm/rustdoc-twoslash)
+//! that integrates [`twoslash-rust`](https://github.com/wevm/vocs/tree/main/twoslash-rust),
+//! a library that extracts type information from Rust code using rust-analyzer.
+//!
+//! ```text
+//!   ┌─────────────────────────────────────────────┐
+//!   │  /// ```rust                                 │
+//!   │  /// let x = vec![1, 2, 3];                  │
+//!   │  /// let sum: i32 = x.iter().sum();          │
+//!   │  /// ```                                     │
+//!   └──────────────────┬──────────────────────────┘
+//!                      │
+//!                      ▼
+//!   ┌──────────────────────────────────────────────┐
+//!   │  pulldown-cmark  (markdown.rs)               │
+//!   │  Parses doc comments, yields code blocks     │
+//!   └──────────────────┬───────────────────────────┘
+//!                      │
+//!                      ▼
+//!   ┌──────────────────────────────────────────────┐
+//!   │  twoslash.rs                                 │
+//!   │  Wraps code in fn main(), extracts use       │
+//!   │  statements, calls twoslash-rust             │
+//!   │                                              │
+//!   │    twoslash-rust ──► rust-analyzer            │
+//!   │    Scaffolds temp Cargo project, runs        │
+//!   │    ra_ap_ide, returns StaticQuickInfo[]       │
+//!   └──────────────────┬───────────────────────────┘
+//!                      │
+//!                      ▼
+//!   ┌──────────────────────────────────────────────┐
+//!   │  highlight.rs                                │
+//!   │  Merges annotations into DecorationInfo,     │
+//!   │  fuzzy-matches token ranges, emits           │
+//!   │  <span data-type="let x: Vec<i32>">          │
+//!   └──────────────────┬───────────────────────────┘
+//!                      │
+//!                      ▼
+//!   ┌──────────────────────────────────────────────┐
+//!   │  rustdoc.css + main.js                       │
+//!   │  CSS hover popovers with JS positioning      │
+//!   └──────────────────────────────────────────────┘
+//! ```
+//!
+//! ### Source
+//!
+//! - **Rustdoc fork**: [`tmm/rustdoc-twoslash`](https://github.com/tmm/rustdoc-twoslash) — the modified `src/librustdoc/` files and a patch
+//! - **twoslash-rust**: [`wevm/vocs/twoslash-rust`](https://github.com/wevm/vocs/tree/main/twoslash-rust) — rust-analyzer integration library
+//! - **This demo**: [`tmm/twoslash-demo`](https://github.com/tmm/twoslash-demo)
+//!
+//! ### Build
+//!
+//! ```bash
+//! RUSTDOC_TWOSLASH=1 \
+//!   RUSTDOC=.../build/host/stage1/bin/rustdoc \
+//!   RUSTC=.../build/host/stage1/bin/rustc \
+//!   cargo doc --no-deps
+//! ```
 
 use std::collections::HashMap;
 
